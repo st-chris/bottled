@@ -7,9 +7,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project uses concurrently to combine an express backend and react frontend server.
 In the main folder you'll have to create a .env file with the following information:
-MONGO\*URI=\*\*\_INSERT MONGODB INFO**\*
-JWT_SECRET=**_INSERT SECRET FOR JSONWEBTOKEN_**
-STRIPE_SECRET_KEY=**_INSERT STRIPE SECRET KEY_\*\*
+MONGO_URI=**INSERT MONGODB INFO**
+JWT_SECRET=**INSERT SECRET FOR JSONWEBTOKEN**
+STRIPE_SECRET_KEY=**INSERT STRIPE SECRET KEY**
 
 To seed the beers into your db, uncomment the seedproducts lines in server.js. After this, comment out these lines again to avoid this from happening everytime you start the server.
 
