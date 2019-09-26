@@ -17,11 +17,27 @@ connectDB();
 
 // Init middleware
 app.use(express.json({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Define routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/products', require('./routes/api/products'));
+app.post('/payment', (req, res) => {
+  const body = {
+    source: req.body.token.id,
+    amount: req.body.amount,
+    currency: 'usd'
+  };
+
+  stripe.charges.create(body, (stripeErr, stripeRes) => {
+    if (stripeErr) {
+      res.status(500).send({ error: stripeErr });
+    } else {
+      res.status(200).send({ success: stripeRes });
+    }
+  });
+});
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -31,22 +47,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
-
-app.post('/payment', (req, res) => {
-  const body = {
-    soure: req.body.token.id,
-    amount: req.body.amount,
-    currency: 'usd'
-  };
-
-  stripe.charges.create(body, (stripeErr, stripeRes) => {
-    if (stripeErr) {
-      res.status(500).send({ error: stripeErr });
-    } else {
-      res.status(200).send({ succes: stripeRes });
-    }
-  });
-});
 
 const PORT = process.env.PORT || 5000;
 
