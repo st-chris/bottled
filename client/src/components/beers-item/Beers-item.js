@@ -12,7 +12,7 @@ const BeersItem = ({ item, addItem }) => {
     <div className='beers-item'>
       <img className='image' src={image_url} alt={name} />
       <div className='beers-item-footer'>
-        <span className='name'>{name}</span>
+        <span className='name'>{name.substring(0, 20)}</span>
         <span className='price'>
           {price.toLocaleString('en-US', {
             style: 'currency',

@@ -9,6 +9,7 @@
   position: relative;
   padding: 15px;
   align-content: space-between;
+  overflow: hidden;
 
   .image {
     height: 80%;
@@ -21,6 +22,14 @@
     position: absolute;
     bottom: 15px;
     display: none;
+
+    @media screen and(max-width: 700px) {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+      bottom: 50px;
+    }
   }
 
   &:hover {
@@ -33,6 +42,19 @@
     }
   }
 
+  @media screen and(max-width: 700px) {
+    width: 40vw;
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+      .custom-button {
+        opacity: unset;
+      }
+    }
+  }
+
   .beers-item-footer {
     width: 95%;
     height: 5%;
@@ -42,6 +64,9 @@
     .name {
       width: 85%;
       margin-bottom: 15px;
+      @media screen and(max-width: 700px) {
+        width: 70%;
+      }
     }
 
     .price {

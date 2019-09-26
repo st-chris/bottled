@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { registerStart } from '../../actions/auth';
 
+import './register.scss';
+
 import FormInput from '../form-input/Form-input';
 import CustomButton from '../custom-button/Custom-button';
 

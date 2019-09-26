@@ -17,9 +17,17 @@
     align-items: center;
     height: 100%;
     width: 170px;
+
+    @media screen and(max-width: 500px) {
+      width: 40px;
+    }
   }
   .logo-title {
     font-size: 1.5rem;
+
+    @media screen and(max-width: 500px) {
+      display: none;
+    }
   }
   .logo {
     height: 50px;
@@ -32,6 +40,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    @media screen and(max-width: 700px) {
+      width: 90%;
+    }
 
     .item {
       padding: 10px 15px;
