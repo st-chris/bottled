@@ -11,11 +11,8 @@ export function* payment({ payload: { amount, token } }) {
   };
 
   const body = JSON.stringify({ amount, token });
-  console.log(body);
   try {
-    console.log('komt ie');
     const res = yield axios.post('/api/payment', body, config);
-    console.log('komt ie 2', res.data);
     yield put(paymentSuccess(res.data));
   } catch (error) {
     yield put(paymentFailure(error));
