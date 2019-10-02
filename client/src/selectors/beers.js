@@ -18,3 +18,8 @@ export const selectCategoryBeer = categoryUrlParam =>
     [selectBeerItems],
     beerItems => (beerItems ? beerItems[categoryUrlParam] : null)
   );
+
+export const selectIsBeerLoaded = createSelector(
+  [selectBeers],
+  beers => beers.loading
+);

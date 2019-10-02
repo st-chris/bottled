@@ -10,14 +10,14 @@ const initialState = {
     {
       title: 'amber',
       imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/c/c2/IPA_BEER_AT_JW_SWEETMANS_CRAFT_BREWERY_DUBLIN_IRELAND_JULY_2013_%289201149898%29.jpg',
+        'http://c1.peakpx.com/wallpaper/693/164/906/beer-brew-booze-alcohol-wallpaper-preview.jpg',
       id: 2,
       linkUrl: 'beers/amber'
     },
     {
       title: 'dark lager',
       imageUrl:
-        'https://www.publicdomainpictures.net/pictures/260000/velka/dark-beer-15289995398SH.jpg',
+        'https://live.staticflickr.com/8021/6967199248_454f1ed48a_b.jpg',
       id: 3,
       linkUrl: 'beers/dark-brown'
     },

@@ -1,47 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import { getProductsStart } from '../../actions/beers';
 
-import WithSpinner from '../../components/with-spinner/With-spinner';
-
-import BeersOverview from '../../components/beers-overview/Beers-overview';
-import EbcCategory from '../ebc-category/EbcCategory';
+import Spinner from '../../components/spinner/Spinner';
 
 import './beers.scss';
 
-const BeersOverviewWithSpinner = WithSpinner(BeersOverview);
-const EbcCategoryWithSpinner = WithSpinner(EbcCategory);
+const BeersOverviewContainer = lazy(() =>
+  import('../../components/beers-overview/beers-overview.container')
+);
+const EbcCategoryContainer = lazy(() =>
+  import('../ebc-category/ebcCategory.container')
+);
 
-const Beers = ({ match, getProductsStart, loading }) => {
+const Beers = ({ match, getProductsStart }) => {
   useEffect(() => {
     getProductsStart();
   }, [getProductsStart]);
   return (
     <div className='beers-page'>
-      <Route
-        exact
-        path={`${match.path}`}
-        render={props => (
-          <BeersOverviewWithSpinner isLoading={loading} {...props} />
-        )}
-      />
-      <Route
-        path={`${match.path}/:categoryId`}
-        render={props => (
-          <EbcCategoryWithSpinner isLoading={loading} {...props} />
-        )}
-      />
+      <Suspense fallback={<Spinner />}>
+        <Route
+          exact
+          path={`${match.path}`}
+          component={BeersOverviewContainer}
+        />
+        <Route
+          path={`${match.path}/:categoryId`}
+          component={EbcCategoryContainer}
+        />
+      </Suspense>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  loading: state.beers.loading
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { getProductsStart }
 )(Beers);
