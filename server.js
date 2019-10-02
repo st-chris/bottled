@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
+const compression = require('compression');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -16,6 +17,7 @@ const app = express();
 connectDB();
 
 // Init middleware
+app.use(compression());
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 

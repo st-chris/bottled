@@ -10,7 +10,8 @@ import './App.css';
 // Components
 import Header from './components/header/Header';
 import Spinner from './components/spinner/Spinner';
-
+import ErrorBoundary from './components/error-boundary/Error-boundary';
+//Lazy
 const Home = lazy(() => import('./pages/home/Home'));
 const Beers = lazy(() => import('./pages/beers/Beers'));
 const Auth = lazy(() => import('./pages/auth/Auth'));
@@ -25,13 +26,15 @@ const App = () => {
           <div>
             <Header />
             <Switch>
-              <Suspense fallback={<Spinner />}>
-                <Route exact path='/' component={Home} />
-                <Route path='/beers' component={Beers} />
-                <Route exact path='/auth' component={Auth} />
-                <Route exact path='/checkout' component={Checkout} />
-                <Route exact path='/contact' component={Contact} />
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<Spinner />}>
+                  <Route exact path='/' component={Home} />
+                  <Route path='/beers' component={Beers} />
+                  <Route exact path='/auth' component={Auth} />
+                  <Route exact path='/checkout' component={Checkout} />
+                  <Route exact path='/contact' component={Contact} />
+                </Suspense>
+              </ErrorBoundary>
             </Switch>
           </div>
         </PersistGate>

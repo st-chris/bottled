@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 
 import { getProductsStart } from '../../actions/beers';
 
+import ErrorBoundary from '../../components/error-boundary/Error-boundary';
 import Spinner from '../../components/spinner/Spinner';
 
 import './beers.scss';
@@ -21,17 +22,19 @@ const Beers = ({ match, getProductsStart }) => {
   }, [getProductsStart]);
   return (
     <div className='beers-page'>
-      <Suspense fallback={<Spinner />}>
-        <Route
-          exact
-          path={`${match.path}`}
-          component={BeersOverviewContainer}
-        />
-        <Route
-          path={`${match.path}/:categoryId`}
-          component={EbcCategoryContainer}
-        />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Route
+            exact
+            path={`${match.path}`}
+            component={BeersOverviewContainer}
+          />
+          <Route
+            path={`${match.path}/:categoryId`}
+            component={EbcCategoryContainer}
+          />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
