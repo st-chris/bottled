@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
 const compression = require('compression');
+const enforce = require('enforce');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -17,7 +18,6 @@ const app = express();
 connectDB();
 
 // Init middleware
-app.use(compression());
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,12 +29,19 @@ app.use('/api/payment', require('./routes/api/payment'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
+  app.use(compression());
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join(__dirname, 'client/build')));
 
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
+
+// Get serviceWorker file
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
+});
 
 const PORT = process.env.PORT || 5000;
 
