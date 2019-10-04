@@ -33,7 +33,7 @@ const Checkout = ({ cartItems, total }) => {
         <CheckoutItem key={item._id} cartItem={item} />
       ))}
       <div className='total'>
-        <span>
+        <span className='amount'>
           Total:{' '}
           {total.toLocaleString('en-US', {
             style: 'currency',
