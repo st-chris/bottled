@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { selectIsBeerLoaded } from '../../selectors/beers';
+import { selectIsProfileLoaded } from '../../selectors/profile';
 
 import WithSpinner from '../with-spinner/With-spinner';
-import BeersOverview from './Beers-overview';
+import ProfileForm from './Profile-form';
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsBeerLoaded
+  isLoading: selectIsProfileLoaded
 });
 
-const BeersOverviewContainer = compose(
+const ProfileFormContainer = compose(
   connect(mapStateToProps),
   WithSpinner
-)(BeersOverview);
+)(ProfileForm);
 
-export default BeersOverviewContainer;
+export default ProfileFormContainer;

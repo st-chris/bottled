@@ -1,11 +1,8 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import axios from 'axios';
 
-import {
-  GET_PRODUCTS_START,
-  GET_PRODUCTS,
-  GET_PRODUCTS_ERROR
-} from '../actions/types';
+import { GET_PRODUCTS_START } from '../actions/types';
+import { getProducts, getProductsFailure } from '../actions/beers';
 
 export function* getProductsAsync() {
   try {
@@ -16,15 +13,9 @@ export function* getProductsAsync() {
       return acc;
     }, {});
 
-    yield put({
-      type: GET_PRODUCTS,
-      payload: reducedData
-    });
+    yield put(getProducts(reducedData));
   } catch (err) {
-    yield put({
-      type: GET_PRODUCTS_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
+    yield put(getProductsFailure(err));
   }
 }
 

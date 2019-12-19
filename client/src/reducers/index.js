@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import auth from './auth';
+import profile from './profile';
 import cart from './cart';
 import category from './category';
 import beers from './beers';
@@ -16,6 +17,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth,
+  profile,
   cart,
   category,
   ebc,

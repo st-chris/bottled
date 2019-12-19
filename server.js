@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 // Define routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/products', require('./routes/api/products'));
 app.use('/api/payment', require('./routes/api/payment'));
 

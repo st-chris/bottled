@@ -3,14 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginStart } from '../../actions/auth';
 import { createStructuredSelector } from 'reselect';
-import { selectIsAuthenticated } from '../../selectors/user';
+import { selectCurrentUser } from '../../selectors/user';
 
 import FormInput from '../form-input/Form-input';
 import CustomButton from '../custom-button/Custom-button';
 
 import './login.scss';
 
-const Login = ({ loginStart, isAuthenticated }) => {
+const Login = ({ loginStart, currentUser }) => {
   const [loginDetails, setLoginDetails] = useState({ email: '', password: '' });
 
   const { email, password } = loginDetails;
@@ -28,8 +28,8 @@ const Login = ({ loginStart, isAuthenticated }) => {
     setLoginDetails({ ...loginDetails, [name]: value });
   };
 
-  if (isAuthenticated) {
-    return <Redirect to='/' />;
+  if (currentUser) {
+    return <Redirect to='/account' />;
   }
   return (
     <div className='login'>
@@ -60,7 +60,7 @@ const Login = ({ loginStart, isAuthenticated }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: selectIsAuthenticated
+  currentUser: selectCurrentUser
 });
 
 export default connect(

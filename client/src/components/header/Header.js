@@ -11,13 +11,15 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 import CartIcon from '../cart-icon/Cart-icon';
 import CartDropdown from '../cart-dropdown/Cart-dropdown';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 import './header.scss';
 
 const Header = ({ currentUser, hidden, logoutStart, userLoadedStart }) => {
   useEffect(() => {
-    if (localStorage.token) {
-      userLoadedStart();
-    }
+    userLoadedStart();
   }, [userLoadedStart]);
 
   return (
@@ -34,9 +36,14 @@ const Header = ({ currentUser, hidden, logoutStart, userLoadedStart }) => {
           CONTACT
         </Link>
         {currentUser ? (
-          <a onClick={logoutStart} href='#!' className='item'>
-            SIGN OUT
-          </a>
+          <div className='loggedIn'>
+            <Link className='item' to='/account'>
+              <FontAwesomeIcon icon={faUser} />
+            </Link>
+            <a onClick={logoutStart} href='#!' className='item'>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+            </a>
+          </div>
         ) : (
           <Link className='item' to='/auth'>
             SIGN IN
@@ -54,7 +61,6 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutStart, userLoadedStart }
-)(Header);
+export default connect(mapStateToProps, { logoutStart, userLoadedStart })(
+  Header
+);
