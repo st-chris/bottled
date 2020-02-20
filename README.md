@@ -1,5 +1,10 @@
 # bottled.
 
+Work in progress:
+
+- Adding order history / details
+- Advanced stripe payments
+
 A simple webshop for Brewdog's beers (info from [Punk API](https://punkapi.com/)), with the ability to register as a user. Adding the beers to a cart/crate and paying through Stripe.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), see their website for more info.
 
