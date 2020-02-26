@@ -13,7 +13,7 @@ import CartDropdown from '../cart-dropdown/Cart-dropdown';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 import './header.scss';
 
@@ -39,6 +39,9 @@ const Header = ({ currentUser, hidden, logoutStart, userLoadedStart }) => {
           <div className='loggedIn'>
             <Link className='item' to='/account'>
               <FontAwesomeIcon icon={faUser} />
+            </Link>
+            <Link className='item' to='/orders'>
+              <FontAwesomeIcon icon={faFileAlt} />
             </Link>
             <a onClick={logoutStart} href='#!' className='item'>
               <FontAwesomeIcon icon={faSignOutAlt} />

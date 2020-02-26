@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PAYMENT_START } from '../actions/types';
 import { paymentFailure, paymentSuccess } from '../actions/payment';
 
-export function* payment({ payload: { amount, token } }) {
+export function* payment({ payload: { history, amount, token } }) {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ export function* payment({ payload: { amount, token } }) {
   const body = JSON.stringify({ amount, token });
   try {
     const res = yield axios.post('/api/payment', body, config);
-    yield put(paymentSuccess(res.data));
+    yield put(paymentSuccess(res.data, history));
   } catch (error) {
     yield put(paymentFailure(error));
   }

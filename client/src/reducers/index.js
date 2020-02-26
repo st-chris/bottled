@@ -8,6 +8,7 @@ import cart from './cart';
 import category from './category';
 import beers from './beers';
 import ebc from './ebc';
+import orders from './order';
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   auth,
   profile,
   cart,
+  orders,
   category,
   ebc,
   beers

@@ -64,10 +64,6 @@ export function* onCreateProfileStart() {
   yield takeLatest(CREATE_PROFILE_START, createProfile);
 }
 
-// export function* onCreateProfileSuccess() {
-//   yield takeLatest(CREATE_PROFILE_SUCCESS, getProfileStart);
-// }
-
 export function* profileSagas() {
   yield all([
     call(getProfileStart),

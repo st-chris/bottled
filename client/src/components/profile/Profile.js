@@ -16,6 +16,9 @@ const Profile = ({ profile, user }) => {
       <div className='profile'>
         <div>
           <h2>Details of {name}</h2>
+          <span>
+            <Link to='/orders'>Click here</Link> to see your orders
+          </span>
         </div>
         <div>Street: {street_nr}</div>
         <div>Postal code: {postal_code}</div>

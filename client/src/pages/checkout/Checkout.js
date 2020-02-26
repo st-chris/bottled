@@ -9,7 +9,7 @@ import StripeCheckoutButton from '../../components/stripe-button/Stripe-button';
 
 import './checkout.scss';
 
-const Checkout = ({ cartItems, total }) => {
+const Checkout = ({ history, cartItems, total }) => {
   return (
     <div className='checkout-page'>
       <div className='checkout-header'>
@@ -40,7 +40,7 @@ const Checkout = ({ cartItems, total }) => {
             currency: 'USD'
           })}
         </span>
-        <StripeCheckoutButton price={total} />
+        <StripeCheckoutButton history={history} price={total} />
       </div>
     </div>
   );

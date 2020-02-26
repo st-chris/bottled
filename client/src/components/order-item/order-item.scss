@@ -1,0 +1,27 @@
+.order-item {
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 5px 0;
+  font-size: 20px;
+  align-items: center;
+
+  @media screen and (max-width: 800px) {
+    font-size: 18px;
+  }
+
+  .date {
+    width: 15%;
+    @media screen and (max-width: 800px) {
+      width: 25%;
+    }
+  }
+  .name {
+    width: 40%;
+  }
+  .quantity,
+  .price {
+    width: 15%;
+  }
+}

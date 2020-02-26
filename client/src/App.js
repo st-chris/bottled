@@ -12,11 +12,13 @@ import Header from './components/header/Header';
 import Spinner from './components/spinner/Spinner';
 import ErrorBoundary from './components/error-boundary/Error-boundary';
 import PrivateRoute from './components/routing/PrivateRoute';
+
 //Lazy
 const Home = lazy(() => import('./pages/home/Home'));
 const Beers = lazy(() => import('./pages/beers/Beers'));
 const Auth = lazy(() => import('./pages/auth/Auth'));
 const Account = lazy(() => import('./pages/account/Account'));
+const Orders = lazy(() => import('./pages/orders/Orders'));
 const Checkout = lazy(() => import('./pages/checkout/Checkout'));
 const Contact = lazy(() => import('./pages/contact/Contact'));
 
@@ -34,7 +36,8 @@ const App = () => {
                   <Route path='/beers' component={Beers} />
                   <Route exact path='/auth' component={Auth} />
                   <PrivateRoute path='/account' component={Account} />
-                  <Route exact path='/checkout' component={Checkout} />
+                  <PrivateRoute path='/orders' component={Orders} />
+                  <PrivateRoute exact path='/checkout' component={Checkout} />
                   <Route exact path='/contact' component={Contact} />
                 </Suspense>
               </ErrorBoundary>
